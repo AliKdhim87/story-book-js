@@ -1,11 +1,15 @@
+//@ts-check
 import React from "react"
+import { ThemeProvider } from "styled-components"
+import { GlobalStyle } from "../src/themes/GlobalStyles"
+import { themeDefault } from "../src/themes/themeDefault"
 
 export const decorators = [
   (Story) => (
-    <div style={{ margin: "3em" }}>
-      <h2>Hello world!</h2>
+    <ThemeProvider theme={themeDefault}>
+      <GlobalStyle />
       <Story />
-    </div>
+    </ThemeProvider>
   ),
 ]
 
