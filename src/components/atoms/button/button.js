@@ -1,55 +1,48 @@
-//@ts-check
 import React from "react"
-import PropTypes from "prop-types"
-import "./button.css"
+import { string, func, node, oneOf } from "prop-types"
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary"
+import { StyledButton } from "./Button.styles"
+import { PlusIcon, ShoppingIcon, UserIcon, XIcon } from "../../../assets/Icons"
+
+const IconTypes = {
+  plus: PlusIcon,
+  shopping: ShoppingIcon,
+  user: UserIcon,
+  x: XIcon,
+}
+
+const Button = ({ children, href, onClick, variant, icon }) => {
+  // TODO do not allows user use not existing icon name
+  let Icon = IconTypes[icon]
   return (
-    <button
-      type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
+    <>
+      {!href ? (
+        <StyledButton variant={variant} onClick={onClick}>
+          {icon && <Icon />}
+          {children}
+        </StyledButton>
+      ) : (
+        <StyledButton variant={variant} as="a" href={href}>
+          {icon && <Icon />}
+          {children}
+        </StyledButton>
       )}
-      style={backgroundColor && { backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
+    </>
   )
 }
 
+export default Button
+
 Button.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.bool,
-  /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  /**
-   * Button contents
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
-  onClick: PropTypes.func,
+  children: node.isRequired,
+  onClick: func,
+  href: string,
+  variant: oneOf(["secondary", "primary"]),
+  icon: oneOf(["x", "user", "shopping", "plus"]).isRequired,
 }
 
 Button.defaultProps = {
-  backgroundColor: null,
-  primary: false,
-  size: "medium",
   onClick: undefined,
+  href: null,
+  variant: "primary",
 }
