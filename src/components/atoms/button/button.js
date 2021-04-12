@@ -1,6 +1,5 @@
 import React from "react"
 import { string, func, node, oneOf } from "prop-types"
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
 
 import { StyledButton } from "./Button.styles"
 import { PlusIcon, ShoppingIcon, UserIcon, XIcon } from "../../../assets/Icons"
@@ -13,7 +12,7 @@ const IconTypes = {
 }
 
 const Button = ({ children, href, onClick, variant, icon }) => {
-  // TODO do not allows user use not existing icon name
+  // TODO handle the error in case user pass not existing  icon name
   let Icon = IconTypes[icon]
   return (
     <>
@@ -23,7 +22,7 @@ const Button = ({ children, href, onClick, variant, icon }) => {
           {children}
         </StyledButton>
       ) : (
-        <StyledButton variant={variant} as="a" href={href}>
+        <StyledButton variant={variant} as="a" href={href} onClick={onClick}>
           {icon && <Icon />}
           {children}
         </StyledButton>
