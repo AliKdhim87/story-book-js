@@ -1,0 +1,13 @@
+{
+    "icon": {
+        "label": "button icon",
+        "options": {
+            "plus": "plus",
+            "shopping": "shopping",
+            "user": "user",
+            "x": "x"
+        },
+        "defaultValue": "shopping",
+        "groupId": "icons"
+    }
+}

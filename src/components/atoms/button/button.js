@@ -1,5 +1,6 @@
 import React from "react"
 import { string, func, node, oneOf } from "prop-types"
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
 
 import { StyledButton } from "./Button.styles"
 import { PlusIcon, ShoppingIcon, UserIcon, XIcon } from "../../../assets/Icons"
@@ -38,7 +39,7 @@ Button.propTypes = {
   onClick: func,
   href: string,
   variant: oneOf(["secondary", "primary"]),
-  icon: oneOf(["x", "user", "shopping", "plus"]).isRequired,
+  icon: oneOf(["x", "user", "shopping", "plus"]),
 }
 
 Button.defaultProps = {
