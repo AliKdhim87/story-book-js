@@ -1,3 +1,4 @@
+// @ts-check
 import React from "react"
 
 import { withDesign } from "storybook-addon-designs"
@@ -10,36 +11,35 @@ const Template = (args) => <Button {...args} />
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-  children: "Secondary",
-  variant: "secondary",
+  text: "Secondary",
+  color: "secondary",
 }
 
 export const Primary = Template.bind({})
 Primary.args = {
-  children: "Primary",
-  variant: "primary",
+  text: "Primary",
+  color: "primary",
 }
 export const LinkButton = Template.bind({})
 LinkButton.args = {
   href: "/",
-  children: "Link",
+  text: "Link",
 }
 
 export const IconButton = Template.bind({})
 IconButton.args = {
-  children: "Icon",
-  icon: "",
+  text: "Icon",
+  icon: "user",
 }
-
-export const FunctionButton = Template.bind({})
-FunctionButton.args = {
-  children: "Function",
-  onClick: () => alert("Button clicked"),
+export const BasicButton = Template.bind({})
+BasicButton.args = {
+  text: "Basic Button",
+  basic: false,
 }
 
 export default {
   component: Button,
-  title: "Button",
+  title: "Atoms",
   decorators: [withDesign],
   parameters: {
     design: {

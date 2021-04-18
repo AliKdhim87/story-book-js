@@ -1,5 +1,6 @@
+// @ts-check
 import React from "react"
-import { string, func, node, oneOf } from "prop-types"
+import { string, oneOf, bool } from "prop-types"
 
 import { StyledButton } from "./Button.styles"
 import { PlusIcon, ShoppingIcon, UserIcon, XIcon } from "../../../assets/Icons"
@@ -11,20 +12,20 @@ const IconTypes = {
   x: XIcon,
 }
 
-const Button = ({ children, href, onClick, variant, icon }) => {
-  // TODO handle the error in case user pass not existing  icon name
+const Button = ({ text, href, color, icon, basic }) => {
+  // TODO handle the error in case user pass not existing icon name
   let Icon = IconTypes[icon]
   return (
     <>
       {!href ? (
-        <StyledButton variant={variant} onClick={onClick}>
+        <StyledButton color={color} basic={basic}>
           {icon && <Icon />}
-          {children}
+          {text}
         </StyledButton>
       ) : (
-        <StyledButton variant={variant} as="a" href={href} onClick={onClick}>
+        <StyledButton color={color} as="a" href={href} basic={basic}>
           {icon && <Icon />}
-          {children}
+          {text}
         </StyledButton>
       )}
     </>
@@ -34,15 +35,29 @@ const Button = ({ children, href, onClick, variant, icon }) => {
 export default Button
 
 Button.propTypes = {
-  children: node.isRequired,
-  onClick: func,
+  /**
+   * The button text
+   */
+  text: string,
+  /**
+   * The `href` is an optional attribute if you pass it the `Button` component will change to HTML `<a>` .
+   *
+   */
   href: string,
-  variant: oneOf(["secondary", "primary"]),
+  /**
+   * The expected color
+   */
+  color: oneOf(["secondary", "primary"]),
+  /**
+   * The expected Icon
+   */
   icon: oneOf(["x", "user", "shopping", "plus"]),
+  /**
+   * If the basic property is `false` it will remove the shadow
+   */
+  basic: bool,
 }
 
 Button.defaultProps = {
-  onClick: undefined,
-  href: null,
-  variant: "primary",
+  basic: true,
 }

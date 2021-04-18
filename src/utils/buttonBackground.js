@@ -1,5 +1,5 @@
-export const buttonBackground = (theme, variant) => {
-  switch (variant) {
+export const buttonBackground = (theme, color) => {
+  switch (color) {
     case "primary":
       return theme.primary
     case "secondary":
