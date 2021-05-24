@@ -17,14 +17,15 @@ const Links = ({ flexDirection, items, alignItems, fullWidth, color }) => {
         /** @type {{ url: string; title: string; }} */ item,
         /** @type {React.Key} */ index
       ) => (
-        <Button
-          color={color}
-          key={index}
-          href={item.url}
-          basic={false}
-          text={item.title}
-          as="a"
-        />
+        <li key={index}>
+          <Button
+            color={color}
+            href={item.url}
+            basic={false}
+            text={item.title}
+            as="a"
+          />
+        </li>
       ))}
     </StyledLinks>
   )

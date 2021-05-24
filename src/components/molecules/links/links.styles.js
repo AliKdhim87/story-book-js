@@ -14,6 +14,9 @@ export const StyledLinks = styled.ul`
   align-items: ${({ alignItems }) => flexOptionMapper[alignItems]};
   justify-content: ${({ alignItems }) => flexOptionMapper[alignItems]};
   width: ${({ fullWidth }) => fullWidth && "100%"};
+  & li {
+    list-style-type: none;
+  }
   & ul > a {
     margin-right: 20px;
 `
