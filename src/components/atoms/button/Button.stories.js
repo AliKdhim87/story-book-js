@@ -39,7 +39,7 @@ BasicButton.args = {
 
 export default {
   component: Button,
-  title: "Atoms",
+  title: "Atoms/Button",
   decorators: [withDesign],
   parameters: {
     design: {
