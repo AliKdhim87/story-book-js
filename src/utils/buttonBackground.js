@@ -6,6 +6,8 @@ export const buttonBackground = (theme, color) => {
       return theme.secondary
     case "tertiary":
       return theme.tertiary
+    case "default":
+      return "transparent"
     default:
       return theme.primary
   }

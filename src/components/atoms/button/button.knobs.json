@@ -1,5 +1,8 @@
 {
     "icon": {
-        "options": [ "plus","shopping","user","x"]
+        "options": ["plus","shopping","user","x"]
+    },
+    "color": {
+        "options": ["secondary", "primary", "tertiary", "default"]
     }
 }

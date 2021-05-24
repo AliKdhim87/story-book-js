@@ -4,8 +4,7 @@ import React from "react"
 import { withDesign } from "storybook-addon-designs"
 
 import Button from "./button"
-import { icon } from "./button.knobs.json"
-const { options } = icon
+import { icon, color } from "./button.knobs.json"
 
 const Template = (args) => <Button {...args} />
 
@@ -24,6 +23,7 @@ export const LinkButton = Template.bind({})
 LinkButton.args = {
   href: "/",
   text: "Link",
+  as: "a",
 }
 
 export const IconButton = Template.bind({})
@@ -53,7 +53,13 @@ export default {
     icon: {
       control: {
         type: "select",
-        options,
+        options: icon.options,
+      },
+    },
+    color: {
+      control: {
+        type: "radio",
+        options: color.options,
       },
     },
   },

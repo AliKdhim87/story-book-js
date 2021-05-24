@@ -12,23 +12,28 @@ const IconTypes = {
   x: XIcon,
 }
 
-const Button = ({ text, href, color, icon, basic }) => {
+const Button = ({
+  text,
+  href,
+  color = "default",
+  icon,
+  basic,
+  as = "button",
+  size = "medium",
+}) => {
   // TODO handle the error in case user pass not existing icon name
   let Icon = IconTypes[icon]
   return (
-    <>
-      {!href ? (
-        <StyledButton color={color} basic={basic}>
-          {icon && <Icon />}
-          {text}
-        </StyledButton>
-      ) : (
-        <StyledButton color={color} as="a" href={href} basic={basic}>
-          {icon && <Icon />}
-          {text}
-        </StyledButton>
-      )}
-    </>
+    <StyledButton
+      color={color}
+      basic={basic}
+      as={as}
+      href={as === "a" ? href : undefined}
+      size={size}
+    >
+      {icon && <Icon />}
+      {text}
+    </StyledButton>
   )
 }
 
@@ -45,9 +50,9 @@ Button.propTypes = {
    */
   href: string,
   /**
-   * The expected color
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: oneOf(["secondary", "primary"]),
+  color: oneOf(["secondary", "primary", "tertiary", "default"]),
   /**
    * The expected Icon
    */
@@ -56,8 +61,15 @@ Button.propTypes = {
    * If the basic property is `false` it will remove the shadow
    */
   basic: bool,
+  /**
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   */
+  as: "button",
+
+  size: oneOf(["small", "medium", "large"]),
 }
 
 Button.defaultProps = {
   basic: true,
+  as: "button",
 }
