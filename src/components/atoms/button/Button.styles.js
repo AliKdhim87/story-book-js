@@ -1,23 +1,20 @@
+// @ts-check
+
 import styled from "styled-components"
-import { buttonBackground } from "../../../utils/buttonBackground"
+
+import { colorHandler } from "../../../utils/colorHandler"
+
+const buttonSizeMapper = {
+  small: "7px 15px",
+  medium: "10px 21px",
+  large: "16px",
+}
 
 export const StyledButton = styled.button`
   align-items: center;
   display: inline-flex;
-  padding: ${({ size }) => {
-    switch (size) {
-      case "small":
-        return "7px 15px"
-      case "medium":
-        return "10px 21px"
-      case "large":
-        return "16px"
-      default:
-        return "10px 21px"
-    }
-  }};
-  background-color: ${({ theme, color }) =>
-    color ? buttonBackground(theme, color) : "transparent"};
+  padding: ${({ size }) => buttonSizeMapper[size]};
+  background-color: ${({ theme, color }) => theme[color]};
   border: none;
   box-shadow: ${({ basic }) =>
     basic
@@ -29,19 +26,9 @@ export const StyledButton = styled.button`
   text-decoration: none;
   transition: all 0.15s ease;
   white-space: nowrap;
+  color: ${({ color, theme }) => colorHandler(color, theme)};
   & svg {
     display: inline-block;
     margin-right: 5px;
   }
-  color: ${({ color, theme }) => {
-    color === "primary" || "secondary" ? theme.white : theme.black
-    switch (color) {
-      case "primary":
-        return theme.white
-      case "secondary":
-        return theme.white
-      default:
-        return theme.black
-    }
-  }};
 `

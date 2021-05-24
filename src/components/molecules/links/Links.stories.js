@@ -47,7 +47,7 @@ LinksHorizontal.args = {
 
 export default {
   component: Links,
-  title: "Molecules",
+  title: "Molecules/links list",
   argTypes: {
     flexDirection: {
       control: {

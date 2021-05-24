@@ -1,17 +1,19 @@
 import styled from "styled-components"
 
-import { alignItemsHandler } from "../../../utils/alignItemsHandler"
-import { buttonBackground } from "../../../utils/buttonBackground"
+const flexOptionMapper = {
+  start: "flex-start",
+  center: "center",
+  end: "flex-end",
+}
 
 export const StyledLinks = styled.ul`
   display: flex;
-  background-color: ${({ theme, color }) => buttonBackground(theme, color)};
+  background-color: ${({ theme, color }) => theme[color]};
   flex-direction: ${({ flexDirection }) =>
     flexDirection === "vertical" ? "column" : undefined};
-  align-items: ${({ alignItems }) => alignItemsHandler(alignItems)};
-  justify-content: ${({ alignItems }) => alignItemsHandler(alignItems)};
+  align-items: ${({ alignItems }) => flexOptionMapper[alignItems]};
+  justify-content: ${({ alignItems }) => flexOptionMapper[alignItems]};
   width: ${({ fullWidth }) => fullWidth && "100%"};
   & ul > a {
     margin-right: 20px;
-  }
 `
