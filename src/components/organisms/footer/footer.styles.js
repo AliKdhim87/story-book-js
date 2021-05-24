@@ -1,20 +1,11 @@
 // @ts-check
 import styled from "styled-components"
-import { buttonBackground } from "../../../utils/buttonBackground"
+
+import { colorHandler } from "../../../utils/colorHandler"
 
 export const StyledFooter = styled.footer`
   display: flex;
-  background-color: ${({ theme, color }) => buttonBackground(theme, color)};
+  background-color: ${({ theme, color }) => theme[color]};
   justify-content: center;
-  color: ${({ color, theme }) => {
-    color === "primary" || "secondary" ? theme.white : theme.black
-    switch (color) {
-      case "primary":
-        return theme.white
-      case "secondary":
-        return theme.white
-      default:
-        return theme.black
-    }
-  }};
+  color: ${({ color, theme }) => colorHandler(color, theme)};
 `
